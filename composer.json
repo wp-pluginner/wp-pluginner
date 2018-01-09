@@ -1,0 +1,27 @@
+{
+  "name": "wp-pluginner/wp-pluginner",
+  "type": "wordpress-plugin",
+  "description": "Awesome Wordpress Plugin Framework for Laravel developers.",
+  "keywords": [ "wordpress", "plugin", "laravel" ],
+  "homepage": "https://github.com/wp-pluginner/wp-pluginner",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Pijar Aji Pratama",
+          "email": "info.aplikasi@gmail.com",
+          "homepage": "https://www.pijarajip.com"
+      }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "wp-pluginner/framework": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "WpPluginner\\": "app/"
+    },
+    "files": [
+      "functions.php"
+    ]
+  }
+}
