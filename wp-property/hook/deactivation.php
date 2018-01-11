@@ -10,4 +10,7 @@
 |
 */
 
+//Remove sample table 'wp_pluginner_string' from database
+$this->plugin->schema()->dropIfExists('wp_pluginner_example');
+
 flush_rewrite_rules();

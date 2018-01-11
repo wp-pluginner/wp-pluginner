@@ -24,38 +24,25 @@ class AdminController extends BaseController {
             'wp_pluginner',
             [
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('wp_pluginner'),
+                'nonce' => wp_create_nonce($this->plugin->config()->get('plugin.slug')),
             ]
         );
     }
 
-    protected function registerAdminStyles($manifests=false){
+    protected function registerAdminStyles( $manifests = false )
+    {
+        $src = '/css/app.css';
+        $version = $manifests && isset($manifests[$src]) ? $manifests[$src] : $this->plugin->metaData('Version');
+        $url = $this->plugin->publicUri . $src;
+        wp_enqueue_style('wp_pluginner-css',$url,[],$version);
         $styles = $this->plugin->config()->get('enqueue.admin_enqueue_styles',[]);
-        if($styles && is_array($styles) && !empty($styles)){
-            foreach($styles as $style){
-                if(isset($style['handle']) && isset($style['src'])){
-                    $url = $style['src'] ? $this->plugin->publicUri.$style['src'] : $style['url'];
-                    $deps = isset($style['deps']) ? $style['deps'] : [];
-                    $version = $manifests && $style['src'] && isset($manifests[($style['src'])]) ? $manifests[($style['src'])] : $this->container->Version;
-                    wp_enqueue_style($style['handle'],$url,$deps,$version);
-                }
-            }
-        }
     }
 
     protected function registerAdminScripts($manifests=false){
-        $scripts = $this->plugin->config()->get('enqueue.admin_enqueue_scripts',[]);
-        if($scripts && is_array($scripts) && !empty($scripts)){
-            foreach($scripts as $script){
-                if(isset($script['handle']) && isset($script['src'])){
-                    $url = $script['src'] ? $this->plugin->publicUri.$script['src'] : $script['url'];
-                    $deps = isset($script['deps']) ? $script['deps'] : [];
-                    $version = $manifests && $script['src'] && isset($manifests[($script['src'])]) ? $manifests[($script['src'])] : $this->container->Version;
-                    $in_footer = isset($script['in_footer']) ? $script['in_footer'] : false;
-                    wp_enqueue_script($script['handle'],$url,$deps,$version,$in_footer);
-                }
-            }
-        }
+        $src = '/js/app.js';
+        $version = $manifests && isset($manifests[$src]) ? $manifests[$src] : $this->plugin->metaData('Version');
+        $url = $this->plugin->publicUri . $src;
+        wp_enqueue_script('wp_pluginner-js',$url,['jquery'],$version,true);
     }
 
     protected function readMixManifest(){

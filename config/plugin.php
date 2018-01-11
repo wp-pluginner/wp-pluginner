@@ -14,7 +14,7 @@ return [
     | @namespace  : Your plugin namespace to access instance
     */
 
-    'slug' => 'wp-pluginner',
+    'slug' => 'wp_pluginner',
     'namespace' => 'WpPluginner',
 
     /*
@@ -22,11 +22,9 @@ return [
     | Illuminate Container
     |--------------------------------------------------------------------------
     |
-    | @slug : Use unique string for plugin identifier (no space, no special chars)
-    | @namespace  : Your plugin namespace to access instance
     */
 
-    'session_enabled' => false,
+    'session_enabled' => true,
     'cache_enabled' => true,
     'route_enabled' => true,
 
@@ -42,7 +40,7 @@ return [
     */
 
     'providers' => [
-        '\WpPluginner\Ajax\Import'
+
     ],
 
 ];
