@@ -12,8 +12,6 @@
  *
  */
 
-use WpPluginner\Framework\Loader;
-
 define( 'WPPLUGINNER_TEXTDOMAIN', 'wp_pluginner' );
 
 load_plugin_textdomain(WPPLUGINNER_TEXTDOMAIN, false, basename(dirname(__FILE__)) . '/localization');
@@ -67,7 +65,7 @@ function wp_pluginner_start()
 	} else {
         require_once __DIR__ . '/vendor/autoload.php';
 
-        $loader = new Loader(__FILE__);
+        $loader = require_once __DIR__.'/bootstrap/loader.php';
         $loader->bootPlugin();
 	}
 }
