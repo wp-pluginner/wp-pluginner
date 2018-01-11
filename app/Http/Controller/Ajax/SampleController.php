@@ -19,7 +19,7 @@ class SampleController extends AjaxController
         if ($model) {
             return wp_send_json_success( [ 'examples' => $model ] );
         } else {
-            return wp_send_json_error( ['message' => __('Failed to get model Example', WPPLUGINNER_TEXTDOMAIN)] );
+            return wp_send_json_error( ['message' => __('Failed to get model Example', WP_PLUGINNER_TEXTDOMAIN)] );
         }
     }
 
@@ -28,9 +28,9 @@ class SampleController extends AjaxController
         if ($this->plugin->request()->has('model')) {
             $create = Example::create(json_decode($this->plugin->request()->get('model'), true));
             if($create) return wp_send_json_success( ['created' => $create] );
-            return wp_send_json_error( ['message' => __('Failed to create new model', WPPLUGINNER_TEXTDOMAIN)] );
+            return wp_send_json_error( ['message' => __('Failed to create new model', WP_PLUGINNER_TEXTDOMAIN)] );
         }
-        return wp_send_json_error( ['message' => __('Missing required parameter', WPPLUGINNER_TEXTDOMAIN)] );
+        return wp_send_json_error( ['message' => __('Missing required parameter', WP_PLUGINNER_TEXTDOMAIN)] );
     }
 
     public function deleteModel()
@@ -38,9 +38,9 @@ class SampleController extends AjaxController
         if ($this->plugin->request()->has('id')) {
             $delete = Example::where('id',$this->plugin->request()->get('id'))->delete();
             if($delete) return wp_send_json_success( ['deleted' => $delete] );
-            return wp_send_json_error( ['message' => __('Failed to delete selected model', WPPLUGINNER_TEXTDOMAIN)] );
+            return wp_send_json_error( ['message' => __('Failed to delete selected model', WP_PLUGINNER_TEXTDOMAIN)] );
         }
-        return wp_send_json_error( ['message' => __('Missing required parameter', WPPLUGINNER_TEXTDOMAIN)] );
+        return wp_send_json_error( ['message' => __('Missing required parameter', WP_PLUGINNER_TEXTDOMAIN)] );
     }
 
 }
