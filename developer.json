@@ -1,0 +1,10 @@
+{
+    "current": {
+        "slug": "wp_pluginner",
+        "variable": "WP_PLUGINNER",
+        "namespace": "WpPluginner"
+    },
+    "replace": {
+        "Illuminate": "Illuminium"
+    }
+}
