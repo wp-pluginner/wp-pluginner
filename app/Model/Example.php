@@ -1,5 +1,7 @@
 <?php
+
 namespace WpPluginner\Model;
+
 use WpPluginner\Framework\Foundation\Model;
 
 class Example extends Model

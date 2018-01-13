@@ -16,9 +16,11 @@ define( 'WP_PLUGINNER_TEXTDOMAIN', 'wp_pluginner' );
 
 load_plugin_textdomain(WP_PLUGINNER_TEXTDOMAIN, false, basename(dirname(__FILE__)) . '/localization');
 
+//check system requirement
 $requirement = wp_pluginner_system_requirement();
 
 if (!empty($requirement)) {
+    //give notice to admin
     add_action(
         'admin_notices',
         function() use ($requirement)
@@ -35,12 +37,19 @@ if (!empty($requirement)) {
         }
     );
 } else {
+    //load plugin
     require_once __DIR__ . '/vendor/autoload.php';
 
     $loader = require_once __DIR__.'/bootstrap/loader.php';
     $loader->bootPlugin();
 }
 
+
+/**
+ * Define plugin requirement.
+ *
+ * @return array
+ */
 function wp_pluginner_system_requirement(){
     $result = array();
     if (!version_compare(PHP_VERSION,"5.6.4",">="))

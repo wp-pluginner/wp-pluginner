@@ -5,7 +5,20 @@ namespace WpPluginner\Http\Controller;
 use WpPluginner\Framework\Foundation\Controller as BaseController;
 
 class AjaxController extends BaseController {
+    /*
+    |--------------------------------------------------------------------------
+    | Ajax Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles base plugin ajax request  with nonce verification.
+    |
+    */
 
+    /**
+     * Ajax execution.
+     *
+     * @return  mixed  response
+     */
     public function execute(){
         if (!$this->plugin->request()->has('function')) {
             return wp_send_json_error( ['message' => __('Undefined Ajax Request', WP_PLUGINNER_TEXTDOMAIN)] );

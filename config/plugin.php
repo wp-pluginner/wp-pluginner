@@ -11,7 +11,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | @slug : Use unique string for plugin identifier (no space, no special chars)
-    | @namespace  : Your plugin namespace to access instance
+    | @namespace  : Your plugin namespace to access instance (only letters)
     */
 
     'name' => 'WP Pluginner',

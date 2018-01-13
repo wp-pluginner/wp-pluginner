@@ -1,7 +1,14 @@
 <?php
-/**
- * @var \WpPluginner\Framework\Loader $this
- **/
+
+
+/*
+|--------------------------------------------------------------------------
+| Register Sample Ajax Handle
+|--------------------------------------------------------------------------
+|
+| @var \WpPluginner\Framework\Loader $this
+|
+*/
 
 $this->plugin->ajax()->addAjax([
     'action' => 'wp_pluginner',

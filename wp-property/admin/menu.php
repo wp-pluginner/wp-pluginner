@@ -1,7 +1,13 @@
 <?php
-/**
- * @var \WpPluginner\Framework\Loader $this
- **/
+
+/*
+|--------------------------------------------------------------------------
+| Register Plugin Menu for Admin
+|--------------------------------------------------------------------------
+|
+| @var \WpPluginner\Framework\Loader $this
+|
+*/
 
 $this->plugin->admin()->addMenu([
     'page_title' => 'WP Pluginner',

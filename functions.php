@@ -12,8 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 */
 
 if (!function_exists('wp_pluginner')) {
-  function wp_pluginner()
-  {
-    return WpPluginner\Framework\Loader::getInstance('WpPluginner');
-  }
+    /**
+     * Get Plugin container instance.
+     *
+     * @return WpPluginner\Framework\Container
+     */
+    function wp_pluginner()
+    {
+        return WpPluginner\Framework\Loader::getInstance('WpPluginner');
+    }
 }
