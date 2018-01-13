@@ -16,56 +16,41 @@ define( 'WP_PLUGINNER_TEXTDOMAIN', 'wp_pluginner' );
 
 load_plugin_textdomain(WP_PLUGINNER_TEXTDOMAIN, false, basename(dirname(__FILE__)) . '/localization');
 
-wp_pluginner_start();
+$requirement = wp_pluginner_system_requirement();
 
+if (!empty($requirement)) {
+    add_action(
+        'admin_notices',
+        function() use ($requirement)
+        {
+            $notice = '<div class="error">';
+            $notice .= '<h3>'. __('WP Pluginner System Requirement!!!', WP_PLUGINNER_TEXTDOMAIN) . '</h3>';
+            $notice .='<ul>';
+            foreach ($requirement as $error) {
+                $notice .= '<li>'.$error.'</li>';
+            }
+            $notice .='</ul>';
+            $notice .='</div>';
+            echo $notice;
+        }
+    );
+} else {
+    require_once __DIR__ . '/vendor/autoload.php';
 
-if (!function_exists('wp_pluginner')) {
-  function wp_pluginner()
-  {
-    return Loader::getInstance('WpPluginner');
-  }
+    $loader = require_once __DIR__.'/bootstrap/loader.php';
+    $loader->bootPlugin();
 }
 
-//if (!function_exists('wp_pluginner_system_requirement')) {
-	function wp_pluginner_system_requirement(){
-		$result = array();
-		if (!version_compare(PHP_VERSION,"5.6.4",">="))
-			$result[] = __('PHP version 5.6.4 or greater required, Please update your PHP version', WP_PLUGINNER_TEXTDOMAIN);
+function wp_pluginner_system_requirement(){
+    $result = array();
+    if (!version_compare(PHP_VERSION,"5.6.4",">="))
+        $result[] = __('PHP version 5.6.4 or greater required, Please update your PHP version', WP_PLUGINNER_TEXTDOMAIN);
 
-	    if (!extension_loaded('gd'))
-			$result[] = __('GD PHP Library is required, Please install this PHP extension', WP_PLUGINNER_TEXTDOMAIN);
+    if (!extension_loaded('gd'))
+        $result[] = __('GD PHP Library is required, Please install this PHP extension', WP_PLUGINNER_TEXTDOMAIN);
 
-	    if (!function_exists('curl_init')||!defined('CURLOPT_FOLLOWLOCATION'))
-			$result[] = __('cURL PHP Extension is required, Please install this PHP extension', WP_PLUGINNER_TEXTDOMAIN);
+    if (!function_exists('curl_init')||!defined('CURLOPT_FOLLOWLOCATION'))
+        $result[] = __('cURL PHP Extension is required, Please install this PHP extension', WP_PLUGINNER_TEXTDOMAIN);
 
-		return $result;
-	}
-//}
-
-function wp_pluginner_start()
-{
-	$requirement = wp_pluginner_system_requirement();
-
-	if (!empty($requirement)) {
-		add_action(
-            'admin_notices',
-            function() use ($requirement)
-            {
-                $notice = '<div class="error">';
-            	$notice .= '<h3>'. __('WpPluginner System Requirement!!!', WP_PLUGINNER_TEXTDOMAIN) . '</h3>';
-                $notice .='<ul>';
-                foreach ($requirement as $error) {
-            		$notice .= '<li>'.$error.'</li>';
-            	}
-                $notice .='</ul>';
-            	$notice .='</div>';
-            	echo $notice;
-            }
-        );
-	} else {
-        require_once __DIR__ . '/vendor/autoload.php';
-
-        $loader = require_once __DIR__.'/bootstrap/loader.php';
-        $loader->bootPlugin();
-	}
+    return $result;
 }
