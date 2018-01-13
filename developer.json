@@ -1,5 +1,6 @@
 {
     "current": {
+        "name": "WP Pluginner",
         "slug": "wp_pluginner",
         "variable": "WP_PLUGINNER",
         "namespace": "WpPluginner"

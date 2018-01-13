@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: WpPluginner
+ * Plugin Name: WP Pluginner
  * Plugin URI: https://github.com/wp-pluginner/wp-pluginner
  * Description: Awesome Wordpress Plugin Framework for Laravel developers.
  * Version: 0.1.0
  * Author: Pijar Aji Pratama
  * Author URI: https://www.pijarajip.com
- * Text Domain: wp-pluginner
+ * Text Domain: wp_pluginner
  * Domain Path: localization
  *
  */

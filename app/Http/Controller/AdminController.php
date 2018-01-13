@@ -5,12 +5,32 @@ namespace WpPluginner\Http\Controller;
 use WpPluginner\Framework\Foundation\Controller as BaseController;
 
 class AdminController extends BaseController {
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles base plugin admin menu  with auto register
+    | app.css, app.js, and localize JS variable to wordpress admin.
+    |
+    */
 
+    /**
+     * Create a new controller instance.
+     *
+     * @param  array  $attributes
+     * @return void
+     */
     public function __construct( $attributes = array() ){
         parent::__construct($attributes);
         $this->load();
     }
 
+    /**
+     * Register assets to wordpress admin.
+     *
+     * @return void
+     */
     public function load(){
         $manifests = $this->readMixManifest();
         $this->registerAdminStyles($manifests);
@@ -18,6 +38,11 @@ class AdminController extends BaseController {
         $this->registerAdminLocalizes();
     }
 
+    /**
+     * Register JS variables to wordpress admin.
+     *
+     * @return void
+     */
     protected function registerAdminLocalizes(){
         wp_localize_script(
             'wp_pluginner-js',
@@ -29,6 +54,13 @@ class AdminController extends BaseController {
         );
     }
 
+    /**
+     * Register css to wordpress admin, If in development mode, read
+     * mix-manifest.json to controll css version if exists.
+     *
+     * @param  array|boolean  $manifests
+     * @return void
+     */
     protected function registerAdminStyles( $manifests = false )
     {
         $src = '/css/app.css';
@@ -38,6 +70,13 @@ class AdminController extends BaseController {
         $styles = $this->plugin->config()->get('enqueue.admin_enqueue_styles',[]);
     }
 
+    /**
+     * Register js to wordpress admin, If in development mode, read
+     * mix-manifest.json to controll js version if exists.
+     *
+     * @param  array|boolean  $manifests
+     * @return void
+     */
     protected function registerAdminScripts($manifests=false){
         $src = '/js/app.js';
         $version = $manifests && isset($manifests[$src]) ? $manifests[$src] : $this->plugin->metaData('Version');
@@ -45,6 +84,11 @@ class AdminController extends BaseController {
         wp_enqueue_script('wp_pluginner-js',$url,['jquery'],$version,true);
     }
 
+    /**
+     * Read mix-manifest.json to controll css and js version.
+     *
+     * @return void
+     */
     protected function readMixManifest(){
         $dev = $this->plugin->config()->get('plugin.development',false);
         if(!$dev) return false;

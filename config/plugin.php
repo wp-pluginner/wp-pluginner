@@ -14,6 +14,7 @@ return [
     | @namespace  : Your plugin namespace to access instance
     */
 
+    'name' => 'WP Pluginner',
     'slug' => 'wp_pluginner',
     'namespace' => 'WpPluginner',
 
