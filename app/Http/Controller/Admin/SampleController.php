@@ -2,7 +2,7 @@
 
 namespace WpPluginner\Http\Controller\Admin;
 
-use WpPluginner\Framework\WpPluginner;
+use WpPluginium\Framework\WpPluginner;
 
 use WpPluginner\Http\Controller\AdminController;
 use WpPluginner\Model\Example;

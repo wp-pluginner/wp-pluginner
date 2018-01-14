@@ -6,7 +6,7 @@
 | Register Sample Ajax Handle
 |--------------------------------------------------------------------------
 |
-| @var \WpPluginner\Framework\Loader $this
+| @var \WpPluginium\Framework\Loader $this
 |
 */
 

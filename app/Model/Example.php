@@ -2,7 +2,7 @@
 
 namespace WpPluginner\Model;
 
-use WpPluginner\Framework\Foundation\Model;
+use WpPluginium\Framework\Foundation\Model;
 
 class Example extends Model
 {

@@ -5,7 +5,7 @@
 | Register Plugin Menu for Admin
 |--------------------------------------------------------------------------
 |
-| @var \WpPluginner\Framework\Loader $this
+| @var \WpPluginium\Framework\Loader $this
 |
 */
 

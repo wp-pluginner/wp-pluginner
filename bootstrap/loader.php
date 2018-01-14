@@ -9,7 +9,7 @@
 | the system binding all of the various parts.
 |
 */
-$loader = new WpPluginner\Framework\Loader(
+$loader = new WpPluginium\Framework\Loader(
     realpath(__DIR__.'/../plugin.php')
 );
 

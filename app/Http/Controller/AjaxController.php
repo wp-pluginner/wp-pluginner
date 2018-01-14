@@ -2,7 +2,7 @@
 
 namespace WpPluginner\Http\Controller;
 
-use WpPluginner\Framework\Foundation\Controller as BaseController;
+use WpPluginium\Framework\Foundation\Controller as BaseController;
 
 class AjaxController extends BaseController {
     /*
